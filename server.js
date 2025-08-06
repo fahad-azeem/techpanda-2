@@ -75,31 +75,31 @@ app.get('/auth/callback', async (req, res) => {
   }
 });
 
-// app.get('/products', async (req, res) => {
-//   const shop = req.query.shop;
-//   const sessionId = knownSessions.get(shop);
+app.get('/api/products', async (req, res) => {
+  const shop = req.query.shop;
+  const sessionId = knownSessions.get(shop);
   
-//   if (!shop) {
-//     return res.status(400).send('Missing shop parameter');
-//   }
+  if (!shop) {
+    return res.status(400).send('Missing shop parameter');
+  }
 
-//   console.log('🔍 Sessions found---------------:', sessionId);
-//   if (!sessionId) {
-//     return res.status(401).send('Unauthorized – session not found');
-//   }
+  console.log('🔍 Sessions found---------------:', sessionId);
+  if (!sessionId) {
+    return res.status(401).send('Unauthorized – session not found');
+  }
 
-//   const session = new Session(sessionId.session);
-//   console.log('🔍 Sessions found:', session);
+  const session = new Session(sessionId.session);
+  console.log('🔍 Sessions found:', session);
 
-//   try {
-//     const client = new shopify.clients.Rest({ session });
-//     const products = await client.get({ path: 'products' });
-//     res.json(products.body.products);
-//   } catch (e) {
-//     console.error('❌ Failed to fetch products:', e);
-//     res.status(500).send('Failed to fetch products');
-//   }
-// });
+  try {
+    const client = new shopify.clients.Rest({ session });
+    const products = await client.get({ path: 'products' });
+    res.json(products.body.products);
+  } catch (e) {
+    console.error('❌ Failed to fetch products:', e);
+    res.status(500).send('Failed to fetch products');
+  }
+});
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, 'client/build')));

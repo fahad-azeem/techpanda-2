@@ -19,7 +19,7 @@ function ProductsPage({ shop }) {
       setLoading(true);
       setError(null);
       
-      const response = await axios.get(`/products?shop=${shop}`);
+      const response = await axios.get(`/api/products?shop=${shop}`);
       setProducts(response.data);
       setLoading(false);
     } catch (err) {
