@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import './InstallPage.css';
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-
 function InstallPage({ setShop }) {
   const [shopDomain, setShopDomain] = useState('');
   const [loading, setLoading] = useState(false);
