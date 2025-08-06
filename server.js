@@ -21,6 +21,13 @@ const shopify = shopifyApi({
   sessionStorage,
 });
 
+// Serve static files from React build
+app.use(express.static(path.join(__dirname, 'client/build')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/client/build/index.html'));
+});
+
 app.use(express.json());
 
 app.get('/auth', async (req, res) => {
