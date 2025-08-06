@@ -7,15 +7,16 @@
   "install-all": "npm install && npm install --prefix client",
   "build": "npm run build --prefix client",
   "server": "node server.js",
-  "start": "npm run client && npm run server",
   "client": "npm start --prefix client",
-  "dev": "concurrently \"npm run server\" \"npm run client\""
-    },
+  "dev": "concurrently \"npm run server\" \"npm run client\"",
+  "start": "npm run build && npm run server"
+},
   "dependencies": {
     "@shopify/shopify-api": "^11.0.0",
     "@shopify/shopify-app-session-storage-sqlite": "^4.0.0",
     "dotenv": "^16.0.3",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "react-scripts": "5.0.1"
   },
   "devDependencies": {
     "concurrently": "^8.2.0",
