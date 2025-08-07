@@ -45,11 +45,7 @@ function App() {
           <Route path="/" element={<InstallPage setShop={setShop} />} />
           <Route path="/auth/callback" element={<AuthCallback setIsAuthenticated={setIsAuthenticated} setShop={setShop} />} />
           <Route path="/products" element={
-            isAuthenticated ? (
-              <ProductsPage shop={shop} />
-            ) : (
-              <Navigate to="/" replace />
-            )
+            <ProductsPage shop={shop} />
           } />
         </Routes>
       </div>
