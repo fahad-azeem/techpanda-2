@@ -21,7 +21,7 @@ function App() {
 
   const checkSession = async (shopDomain) => {
     try {
-      const response = await fetch(`/products?shop=${shopDomain}`);
+      const response = await fetch(`/api/products?shop=${shopDomain}`);
       if (response.ok) {
         setIsAuthenticated(true);
       } else {
@@ -45,7 +45,11 @@ function App() {
           <Route path="/" element={<InstallPage setShop={setShop} />} />
           <Route path="/auth/callback" element={<AuthCallback setIsAuthenticated={setIsAuthenticated} setShop={setShop} />} />
           <Route path="/products" element={
-            <ProductsPage shop={shop} />
+            isAuthenticated ? (
+              <ProductsPage shop={shop} />
+            ) : (
+              <Navigate to="/" replace />
+            )
           } />
         </Routes>
       </div>
